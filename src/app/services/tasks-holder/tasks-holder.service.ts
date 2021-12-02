@@ -27,6 +27,7 @@ export class TasksHolderService {
 
   public deleteTask(id: number): void {
     this.tasks = this.tasks.filter(item => item.id !== id);
+    this.checkTheLastOne();
     this.pushTasksSubject();
   }
 
@@ -36,5 +37,11 @@ export class TasksHolderService {
 
   private pushTasksSubject(): void {
     this.tasks$.next(this.tasks);
+  }
+
+  private checkTheLastOne(): void {
+    if(!this.tasks.length) {
+      this.tasks = undefined;
+    }
   }
 }
