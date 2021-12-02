@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="(tasks$ | async) as tasks; else empty">
+    <tr *ngFor="let task of tasks" [ngClass]="{'background-green': task.status}">
+      <td [ngClass]="{'text-decoration-line-through': task.status}">{{task.name}}</td>
+      <td>
+        <div class="form-check">
+          <input [(ngModel)]="task.status" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        </div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" aria-label="Trash" (click)="deleteTask(task.id)">
+          <i class="bi bi-trash2-fill"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ng-template #empty>
+ <tr>
+   <td colspan="3">
+     <h1 class="text-center display-6">The table is empty</h1>
+   </td>
+</ng-template>

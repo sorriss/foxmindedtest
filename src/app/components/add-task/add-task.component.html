@@ -1,0 +1,14 @@
+<div class="input-group mb-2">
+  <input type="text"
+         class="form-control"
+         placeholder="New task's name"
+         aria-label="New task's name"
+         aria-describedby="button-addon2"
+         [(ngModel)]="taskName">
+  <button class="btn btn-primary"
+          type="button"
+          id="button-addon2"
+          [disabled]="!taskName"
+          (click)="addTask()">Add</button>
+</div>
+
